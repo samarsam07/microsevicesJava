@@ -1,6 +1,7 @@
 package com.samar.quizapp.controller;
 
 import com.samar.quizapp.model.QuestionWrapper;
+import com.samar.quizapp.model.Response;
 import com.samar.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,4 +23,11 @@ public class QuizController {
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id){
         return quizService.getQuizQuestions(id);
     }
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id,@RequestBody List<Response> responses){
+        return quizService.calculateResult(id,responses);
+
+    }
+
+
 }
